@@ -1,0 +1,18 @@
+{% extends "appgym/index.html" %}
+{% block title %}Eliminar Equipamiento | Mi Proyecto Django{% endblock %}
+{% block contenido %}
+
+<div class="container my-5 text-center">
+  <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+    <h4 class="mb-4">
+      ¿Seguro que deseas eliminar el equipo <strong>{{ object.nombre_ref }}</strong>?
+    </h4>
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger px-4">Sí, eliminar</button>
+      <a href="{% url 'equipamiento_list' %}" class="btn btn-secondary px-4">Cancelar</a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

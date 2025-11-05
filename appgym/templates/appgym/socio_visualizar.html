@@ -1,0 +1,50 @@
+{% extends "appgym/index.html" %}
+
+{% block title %}Detalles del Socio | Gimnasio{% endblock %}
+
+{% block contenido %}
+<div class="container my-5">
+  <a href="{% url 'socio_list' %}" class="btn btn-outline-primary mb-3">← Volver al listado</a>
+
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Detalles del Socio</h4>
+    </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">ID:</dt>
+        <dd class="col-sm-9">{{ socio.socio_id }}</dd>
+
+        <dt class="col-sm-3">Nombre:</dt>
+        <dd class="col-sm-9">{{ socio.socio_nombre }}</dd>
+
+        <dt class="col-sm-3">Apellido:</dt>
+        <dd class="col-sm-9">{{ socio.socio_apellido }}</dd>
+
+        <dt class="col-sm-3">DNI:</dt>
+        <dd class="col-sm-9">{{ socio.socio_docnro }}</dd>
+
+        <dt class="col-sm-3">Fecha de Nacimiento:</dt>
+        <dd class="col-sm-9">{{ socio.socio_fecnacimiento|date:"d/m/Y" }}</dd>
+
+        <dt class="col-sm-3">Fecha de Alta:</dt>
+        <dd class="col-sm-9">{{ socio.socio_fecalta|date:"d/m/Y" }}</dd>
+
+        <dt class="col-sm-3">Fecha de Baja:</dt>
+        <dd class="col-sm-9">
+          {% if socio.socio_fecbaja %}
+            {{ socio.socio_fecbaja|date:"d/m/Y" }}
+          {% else %}
+            <span class="text-muted">No asignada</span>
+          {% endif %}
+        </dd>
+      </dl>
+
+      <div class="mt-4 text-end">
+        <a href="{% url 'modificar_socio' socio.socio_id %}" class="btn btn-outline-warning me-2">Modificar</a>
+        <a href="{% url 'eliminar_socio' socio.socio_id %}" onclick="return confirm('¿Seguro que deseas eliminar este socio?')" class="btn btn-outline-danger">Eliminar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

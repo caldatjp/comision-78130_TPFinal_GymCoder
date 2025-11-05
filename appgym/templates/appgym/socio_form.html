@@ -1,0 +1,86 @@
+{% extends "appgym/index.html" %}
+
+{% block title %}
+  {% if edicion %}Editar Socio | Gimnasio appgym{% else %}Nuevo Socio | Gimnasio appgym{% endif %}
+{% endblock %}
+
+{% block contenido %}
+<div class="container my-5">
+
+  <!-- Botón volver -->
+  <a href="{% url 'socio_list' %}" class="btn btn-outline-primary mb-3">← Volver al listado</a>
+
+  <h2 class="fw-bold mb-4">
+    {% if edicion %}Editar Socio{% else %}Nuevo Socio{% endif %}
+  </h2>
+
+  <div class="card shadow-sm p-4">
+
+    <form method="POST">
+      {% csrf_token %}
+
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {{ form.non_field_errors }}
+        </div>
+      {% endif %}
+
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        {{ form.socio_nombre }}
+        {% if form.socio_nombre.errors %}
+          <div class="text-danger small">{{ form.socio_nombre.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        {{ form.socio_apellido }}
+        {% if form.socio_apellido.errors %}
+          <div class="text-danger small">{{ form.socio_apellido.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">DNI</label>
+        {{ form.socio_docnro }}
+        {% if form.socio_docnro.errors %}
+          <div class="text-danger small">{{ form.socio_docnro.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Fecha de Nacimiento</label>
+        {{ form.socio_fecnacimiento }}
+        {% if form.socio_fecnacimiento.errors %}
+          <div class="text-danger small">{{ form.socio_fecnacimiento.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Fecha de Alta</label>
+        {{ form.socio_fecalta }}
+        {% if form.socio_fecalta.errors %}
+          <div class="text-danger small">{{ form.socio_fecalta.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      {% if edicion %}
+      <div class="mb-3">
+        <label class="form-label">Fecha de Baja</label>
+        {{ form.socio_fecbaja }}
+        {% if form.socio_fecbaja.errors %}
+          <div class="text-danger small">{{ form.socio_fecbaja.errors.0 }}</div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary px-4 mt-3">
+        {% if edicion %}Actualizar{% else %}Guardar{% endif %}
+      </button>
+    </form>
+
+  </div>
+
+</div>
+{% endblock %}

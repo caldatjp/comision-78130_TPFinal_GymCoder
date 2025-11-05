@@ -1,0 +1,25 @@
+{% extends "appgym/index.html" %}
+{% block title %}Detalle del Equipamiento | Mi Proyecto Django{% endblock %}
+{% block contenido %}
+<div class="container my-5">
+  <div class="card shadow p-4 mx-auto" style="max-width: 600px;">
+    <h3 class="text-center mb-3">{{ equipamiento.nombre_ref }}</h3>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Código:</strong> {{ equipamiento.codigo }}</li>
+      <li class="list-group-item"><strong>Marca:</strong> {{ equipamiento.marca }}</li>
+      <li class="list-group-item"><strong>Categoría:</strong> {{ equipamiento.get_categoria_display }}</li>
+      <li class="list-group-item"><strong>Estado:</strong> {{ equipamiento.get_estado_display }}</li>
+      <li class="list-group-item"><strong>N° de serie:</strong> {{ equipamiento.nro_serie }}</li>
+      <li class="list-group-item"><strong>Peso:</strong> {{ equipamiento.peso }} kg</li>
+      <li class="list-group-item"><strong>Fecha de alta:</strong> {{ equipamiento.fecha_alta|date:"d/m/Y H:i" }}</li>
+      {% if equipamiento.fecha_baja %}
+        <li class="list-group-item"><strong>Fecha de baja:</strong> {{ equipamiento.fecha_baja|date:"d/m/Y H:i" }}</li>
+      {% endif %}
+    </ul>
+    <div class="text-center mt-4">
+      <a href="{% url 'equipamiento_edit' equipamiento.codigo %}" class="btn btn-warning text-white">Editar</a>
+      <a href="{% url 'equipamiento_list' %}" class="btn btn-secondary">Volver</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

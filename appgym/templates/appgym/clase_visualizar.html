@@ -1,0 +1,38 @@
+{% extends "appgym/index.html" %}
+
+{% block title %}Detalles de la Clase | Gimnasio{% endblock %}
+
+{% block contenido %}
+<div class="container my-5">
+  <a href="{% url 'clase_list' %}" class="btn btn-outline-primary mb-3">← Volver al listado</a>
+
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Detalles de la Clase</h4>
+    </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">ID:</dt>
+        <dd class="col-sm-9">{{ clase.clase_id }}</dd>
+
+        <dt class="col-sm-3">Nombre:</dt>
+        <dd class="col-sm-9">{{ clase.clase_nombre }}</dd>
+
+        <dt class="col-sm-3">Tema:</dt>
+        <dd class="col-sm-9">{{ clase.clase_tema }}</dd>
+
+        <dt class="col-sm-3">Horario:</dt>
+        <dd class="col-sm-9">{{ clase.clase_horario }}</dd>
+
+        <dt class="col-sm-3">Cupo:</dt>
+        <dd class="col-sm-9">{{ clase.clase_cupo }}</dd>
+      </dl>
+
+      <div class="mt-4 text-end">
+        <a href="{% url 'modificar_clase' clase.clase_id %}" class="btn btn-outline-warning me-2">Modificar</a>
+        <a href="{% url 'eliminar_clase' clase.clase_id %}" onclick="return confirm('¿Seguro que deseas eliminar esta clase?')" class="btn btn-outline-danger">Eliminar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

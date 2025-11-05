@@ -1,0 +1,22 @@
+{% extends "appgym/index.html" %}
+{% block title %}{{ view.object|default:"Nuevo Equipamiento" }} | Mi Proyecto Django{% endblock %}
+{% block contenido %}
+
+<div class="container my-5">
+  <h2 class="mb-4 text-center">
+    {% if view.object %}Editar Equipamiento{% else %}Crear Nuevo Equipamiento{% endif %}
+  </h2>
+
+  <div class="card shadow-sm p-4 mx-auto" style="max-width: 600px;">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary px-4">Guardar</button>
+        <a href="{% url 'equipamiento_list' %}" class="btn btn-secondary px-4">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

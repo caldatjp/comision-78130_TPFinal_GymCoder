@@ -1,0 +1,28 @@
+{% extends "appgym/index.html" %}
+
+{% block title %}Acerca de mí | Gimnasio Coder{% endblock %}
+
+{% block contenido %}
+<div class="container my-5">
+  <a href="{% url 'index' %}" class="btn btn-outline-primary mb-3">← Volver al inicio</a>
+
+  <h2 class="fw-bold mb-4 text-center">Acerca de mí</h2>
+
+  <div class="card shadow-sm p-4 mx-auto" style="max-width: 800px;">
+    <p>
+      ¡Hola! Mi nombre es <strong>Juan Coder</strong> y soy el fundador de <strong>Gimnasio Coder</strong>.
+      Desde muy joven combiné dos grandes pasiones: el entrenamiento físico y el mundo de la tecnología.
+    </p>
+
+    <p>
+      Soy <strong>licenciado en Educación Física</strong> y me formé en <strong>desarrollo de software</strong>,
+      convencido de que el futuro del entrenamiento pasa por la innovación y la personalización.
+    </p>
+
+    <p>
+      Esta plataforma fue pensada para brindar una experiencia de entrenamiento única, moderna
+      y accesible para todos. Gracias por ser parte de esta comunidad. ¡Sigamos creciendo juntos!
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}Inicio | Gimnasio Coder{% endblock %}</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f3f4f6;
+      color: #1a1a1a;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    nav {
+      background-color: #0d1b2a;
+    }
+
+    .navbar-brand, .nav-link {
+      color: white !important;
+      transition: 0.3s;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover {
+      color: #4cc9f0 !important;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #14213d 0%, #4cc9f0 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      border-radius: 0 0 30px 30px;
+    }
+
+    .hero h1 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      margin-top: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-primary {
+      background-color: #4cc9f0;
+      border: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 15px;
+    }
+
+    .btn-primary:hover {
+      background-color: #3a86ff;
+    }
+
+    .intro {
+      padding: 35px 20px;
+    }
+
+    footer {
+      background-color: #0d1b2a;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #4cc9f0;
+      text-decoration: underline;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+    footer a:hover {
+      color: #3a86ff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="{% url 'index' %}">Gimnasio Coder</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'instructor_list' %}">Instructores</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'socio_list' %}">Socios</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'equipamiento_list' %}">Equipamiento</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% block contenido %}
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Bienvenido a Gimnasio Coder</h1>
+      <p>Donde la tecnología y el entrenamiento se fusionan para ayudarte a alcanzar tu mejor versión.</p>
+      <a href="{% url 'clase_list' %}" class="btn btn-primary px-4 py-2">Conocé nuestras clases</a>
+    </section>
+
+    <!-- Intro corta -->
+    <div class="container text-center intro">
+      <h2 class="mb-3">Entrená diferente. Entrená inteligente.</h2>
+      <a href="{% url 'about' %}" class="btn btn-primary px-4 py-2 mt-3">Conocé acerca de nosotros</a>
+    </div>
+  {% endblock %}
+
+  <!-- Footer -->
+ <footer>
+  <p class="mb-1">© 2025 Gimnasio Coder | Potenciando tu entrenamiento con tecnología y pasión 💪
+  <a href="{% url 'acerca_de_mi' %}">Acerca de mí</a>
+  </p>
+</footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

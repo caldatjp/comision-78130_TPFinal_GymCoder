@@ -1,0 +1,55 @@
+{% extends "appgym/index.html" %}
+{% block title %}Listado de Equipamiento | Mi Proyecto Django{% endblock %}
+{% block contenido %}
+
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Listado de Equipamiento</h2>
+    <a href="{% url 'equipamiento_create' %}" class="btn btn-primary">+ Nuevo Equipamiento</a>
+  </div>
+
+  <form method="GET" class="mb-3">
+    <div class="input-group" style="max-width: 400px;">
+      <input type="text" name="q" class="form-control" placeholder="Buscar equipo..." value="{{ request.GET.q }}">
+      <button class="btn btn-outline-primary" type="submit">Buscar</button>
+    </div>
+  </form>
+
+  {% if equipamientos %}
+  <div class="table-responsive shadow-sm rounded">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-primary">
+        <tr>
+          <th>#</th>
+          <th>Nombre del equipo</th>
+          <th>Marca</th>
+          <th>Categoría</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for equipamiento in equipamientos %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ equipamiento.nombre_ref }}</td>
+          <td>{{ equipamiento.marca }}</td>
+          <td>{{ equipamiento.get_categoria_display }}</td>
+          <td>{{ equipamiento.get_estado_display }}</td>
+          <td>
+            <div class="btn-group">
+              <a href="{% url 'equipamiento_detail' equipamiento.codigo %}" class="btn btn-sm btn-info text-white">Ver</a>
+              <a href="{% url 'equipamiento_edit' equipamiento.codigo %}" class="btn btn-sm btn-warning text-white">Editar</a>
+              <a href="{% url 'equipamiento_delete' equipamiento.codigo %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-info text-center mt-4">No hay equipos registrados aún.</div>
+  {% endif %}
+</div>
+{% endblock %}

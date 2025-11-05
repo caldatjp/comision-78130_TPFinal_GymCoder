@@ -1,14 +1,15 @@
 # comision-78130
 Repositorio de la comisión 78130 Python Flex
-comision-78130_TP3_Calarame --> https://github.com/caldatjp/comision-78130_TP3_Calarame.git
-ultimo modificado --> 19/10/25 9.45 hs
+comision-78130_TPFinal_Calarame -->  AppGym
+ultimo modificado --> 06/11/25 19 hs
+
 
 -------------------- crear repositorio Git
 En GitHub, crear repositorio, agregar nombre y descripcion, luego readme on, publico, ignore file = Phyton
 https://github.com/caldatjp/TuPrimeraPagina_Calarame.git
 crear carpeta del proyecto
 sobre la misma abrir git bash
-y escribir got clone https://github.com/caldatjp/TuPrimeraPagina_Calarame.git .
+y escribir git clone https://github.com/caldatjp/TuPrimeraPagina_Calarame.git .
 abrir visual studio code desde esa ubicacion
 
 -------------------- crear entorno virtual
@@ -18,14 +19,13 @@ Importante: si tira error, activar la directiva de seguridad desde powershell co
 activar entorno: entorno_virtual/Scripts/activate
 en el file gitignore, agregar al final entorno_virtual
 pip freeze > requirements.txt
+
 -------------------- instalacion django
 instalar django --> pip install django
 para verificar instalacion y version ejecutar : django-admin --version
+
 -------------------- instalar base de datos sqllite viewer
 buscar en extensiones --> SQLLite Viewer --> instalar
--------------------- levantar servidor
-ejecutar en la raiz del proyecto comando --> python manage.py runserver
-verificar en http://127.0.0.1:8000/
 
 -------------------- creacion de proyecto y apps
 django-admin startproject proyecto_coder .
@@ -36,32 +36,137 @@ crear en app coder, la carpeta template, y dentro de esta carpeta coder
 crear en template/coder --> file index.html
 setear en urls.py de proyecto_coder --> urlpatterns
 
+-------------------- levantar servidor
+ejecutar en la raiz del proyecto comando --> python manage.py runserver
+verificar en http://127.0.0.1:8000/
+
 --------------------- levantar estructuras de base de datos 
 una vez creada la estructura de tabla
 ejecutar
 python manage.py makemigrations
 python manage.py migrate
 
------------*************** ESTRUCTURA 
+--------------------- seteo de admin // usuario y pass
+python manage.py createsuperuser
+user: caldatjp
+email: caldatjp@gmail.com
+pass: admin123
+http://127.0.0.1:8000/admin/
 
-SOCIOS
-	socio_id
-	socio_nombre
-	socio_apellido
-	socio_docnro
-	socio_fecnacimiento
-	socio_fecalta
-	socio_fecbaja
-INSTRUCTORES
-	inst_id
-	inst_nombre
-	inst_apellido
-	inst_sexo
-	inst_especialidad
-	inst_turno
-CLASES
-	clase_id
-	clase_nombre
-	clase_especialidad
-	clase_horario
-	clase_cupo
+
+------------------- actualizacion de proyecto en GitHub
+verificar el repositorio al que esta apuntando
+git remote -v
+origin  https://github.com/caldatjp/comision-78130_TPFinal_GymCoder.git (fetch)
+origin  https://github.com/caldatjp/comision-78130_TPFinal_GymCoder.git (push)
+
+forzar la actualizacion completa a git
+git status
+git add .
+
+
+
+
+
+-------------------- estructura del sitio
+/mi_proyecto/
+│
+├─ manage.py
+├─ mi_proyecto/
+│   ├─ __init__.py
+│   ├─ settings.py
+│   ├─ urls.py
+│   ├─ wsgi.py
+│   └─ asgi.py
+│
+├─ appgym/
+│   ├─ migrations/
+│   │    └─ __init__.py
+│   ├─ __init__.py
+│   ├─ admin.py
+│   ├─ apps.py
+│   ├─ forms.py
+│   ├─ models.py
+│   ├─ tests.py
+│   ├─ urls.py
+│   ├─ views.py
+│   └─ templates/
+│        └─ appgym/
+│             ├─ index.html
+│             ├─ socio_list.html
+│             ├─ socio_form.html
+│             ├─ socio_visualizar.html
+│             ├─ instructor_list.html
+│             ├─ instructor_form.html
+│             ├─ instructor_visualizar.html
+│             ├─ clase_list.html
+│             ├─ clase_form.html
+│             ├─ clase_visualizar.html
+│             └─ …otros
+│
+├─ equipamiento/
+│   ├─ migrations/
+│   │    └─ __init__.py
+│   ├─ __init__.py
+│   ├─ admin.py
+│   ├─ apps.py
+│   ├─ forms.py
+│   ├─ models.py
+│   ├─ tests.py
+│   ├─ urls.py
+│   ├─ views.py
+│   └─ templates/
+│        └─ equipamiento/
+│             ├─ equipamiento_list.html
+│             ├─ equipamiento_form.html
+│             ├─ equipamiento_detail.html
+│             └─ …otros
+
+------------- modelo de datos (UML)
+
++---------------------------+
+| Socio                    |
++---------------------------+
+| socio_id : Integer PK     |
+| socio_nombre : Char       |
+| socio_apellido : Char     |
+| socio_docnro : Char       |
+| socio_fecnacimiento : Date|
+| socio_fecalta : Date      |
+| socio_fecbaja : Date      |
++---------------------------+
+
++---------------------------+
+| Instructor               |
++---------------------------+
+| inst_id : Integer PK      |
+| inst_nombre : Char        |
+| inst_apellido : Char      |
+| inst_sexo : Char (o Enum) |
+| inst_especialidad : Char  |
+| inst_turno : Char         |
++---------------------------+
+
++---------------------------+
+| Clase                    |
++---------------------------+
+| clase_id : Integer PK     |
+| clase_nombre : Char       |
+| clase_tema : Char         |
+| clase_horario : Char      |
+| clase_cupo : Integer      |
++---------------------------+
+
++---------------------------+
+| Equipamiento             |
++---------------------------+
+| codigo : Char PK          |
+| nombre_ref : Char         |
+| categoria : FK (?)        |
+| marca : Char              |
+| peso : Decimal/Float      |
+| nro_serie : Char          |
+| estado : Char/Enum        |
+| fecha_alta : Date         |
+| fecha_baja : DateTime     |
++---------------------------+

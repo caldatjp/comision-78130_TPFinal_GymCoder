@@ -1,0 +1,38 @@
+{% extends "appgym/index.html" %}
+
+{% block title %}Detalles del Instructor | Gimnasio{% endblock %}
+
+{% block contenido %}
+<div class="container my-5">
+  <a href="{% url 'instructor_list' %}" class="btn btn-outline-primary mb-3">← Volver al listado</a>
+
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Detalles del Instructor</h4>
+    </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">ID:</dt>
+        <dd class="col-sm-9">{{ instructor.inst_id }}</dd>
+
+        <dt class="col-sm-3">Nombre:</dt>
+        <dd class="col-sm-9">{{ instructor.inst_nombre }}</dd>
+
+        <dt class="col-sm-3">Apellido:</dt>
+        <dd class="col-sm-9">{{ instructor.inst_apellido }}</dd>
+
+        <dt class="col-sm-3">Especialidad:</dt>
+        <dd class="col-sm-9">{{ instructor.inst_especialidad }}</dd>
+
+        <dt class="col-sm-3">Turno:</dt>
+        <dd class="col-sm-9">{{ instructor.inst_turno }}</dd>
+      </dl>
+
+      <div class="mt-4 text-end">
+        <a href="{% url 'modificar_instructor' instructor.inst_id %}" class="btn btn-outline-warning me-2">Modificar</a>
+        <a href="{% url 'eliminar_instructor' instructor.inst_id %}" onclick="return confirm('¿Seguro que deseas eliminar este instructor?')" class="btn btn-outline-danger">Eliminar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
