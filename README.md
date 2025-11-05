@@ -3,6 +3,16 @@ Repositorio de la comisión 78130 Python Flex
 comision-78130_TPFinal_Calarame -->  AppGym
 ultimo modificado --> 06/11/25 19 hs
 
+// pendientes para prox version
+
+FALTA - Uso de mínimo un mixin en una CBV y un decorador en una view común.
+FALTA - Tener una app (accounts/cuentas/etc) para el manejo de todas las vistas relacionadas al usuario/autenticación.
+FALTA - Desarrollar las vistas para un login, un logout y un registro para usuarios. En este último se debe solicitar: username, email, password.
+FALTA Crear una vista de perfil donde se muestran los datos del usuario:
+FALTA Desde el perfil, crear un acceso a una vista de edición de estos datos. Agregar el cambio de password.
+
+FALTA - Video de máximo 10 min que muestre la página y sus funcionalidades (con o sin audio)
+
 
 -------------------- crear repositorio Git
 En GitHub, crear repositorio, agregar nombre y descripcion, luego readme on, publico, ignore file = Phyton
@@ -63,6 +73,9 @@ origin  https://github.com/caldatjp/comision-78130_TPFinal_GymCoder.git (push)
 forzar la actualizacion completa a git
 git status
 git add .
+git commit -m "Subida TPFinal AppGym // version completa sin accounts"
+git push -u origin main
+git push origin main --force
 
 
 
