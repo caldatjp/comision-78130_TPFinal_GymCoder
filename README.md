@@ -3,7 +3,7 @@ Repositorio de la comisión 78130 Python Flex
 comision-78130_TPFinal_Calarame -->  AppGym
 ultimo modificado --> 06/11/25 19 hs
 
-FALTA - Video de máximo 10 min que muestre la página y sus funcionalidades (con o sin audio)
+Video de máximo 10 min que muestre la página y sus funcionalidades (con o sin audio) --> Video_TPFinal_appgym.webm
 
 
 -------------------- crear repositorio Git
