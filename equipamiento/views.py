@@ -2,8 +2,9 @@ from equipamiento.forms import EquipamientoForm
 from equipamiento.models import Equipamiento
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class EquipamientoListView(ListView):
+class EquipamientoListView(LoginRequiredMixin, ListView):
     model = Equipamiento
     template_name = 'equipamiento/equipamiento_list.html'
     context_object_name = "equipamientos"
@@ -14,7 +15,7 @@ class EquipamientoListView(ListView):
             return Equipamiento.objects.filter(nombre_ref__icontains=query).order_by("-fecha_alta")
         return Equipamiento.objects.all()
 
-class EquipamientoCreateView(CreateView):
+class EquipamientoCreateView(LoginRequiredMixin, CreateView):
     model = Equipamiento
     form_class = EquipamientoForm
     template_name = "equipamiento/equipamiento_form.html"
@@ -28,14 +29,14 @@ class EquipamientoUpdateView(UpdateView):
     slug_field = 'codigo'
     slug_url_kwarg = 'codigo'
 
-class EquipamientoDeleteView(DeleteView):
+class EquipamientoDeleteView(LoginRequiredMixin, DeleteView):
     model = Equipamiento
     template_name = "equipamiento/equipamiento_confirm_delete.html"
     success_url = reverse_lazy('equipamiento_list')
     slug_field = 'codigo'
     slug_url_kwarg = 'codigo'
 
-class EquipamientoDetailView(DetailView):
+class EquipamientoDetailView(LoginRequiredMixin, DetailView):
     model = Equipamiento
     template_name = "equipamiento/equipamiento_detail.html"
     context_object_name = "equipamiento"

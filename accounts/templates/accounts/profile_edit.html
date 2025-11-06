@@ -1,0 +1,85 @@
+{% extends "appgym/index.html" %}
+{% block title %}Editar perfil | Gimnasio Coder{% endblock %}
+
+{% block contenido %}
+<div class="container my-5" style="max-width: 700px;">
+  <h2 class="fw-bold mb-4 text-center text-primary">Editar Perfil</h2>
+  <div class="card shadow-sm border-0 rounded-4">
+    <div class="card-body px-4 py-4">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="row">
+          {% for field in form %}
+            {% if field.name != 'password' and field.name != 'password1' and field.name != 'password2' %}
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% for error in field.errors %}
+                  <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- 🔹 Enlace directo para cambiar contraseña -->
+        <div class="text-end mb-3">
+          <a href="{% url 'password_change' %}" class="text-decoration-none text-primary fw-semibold small">
+            <i class="bi bi-key-fill me-1"></i> Cambiar contraseña
+          </a>
+        </div>
+
+        <button class="btn btn-primary w-100 fw-semibold py-2 rounded-3" type="submit">
+          Guardar cambios
+        </button>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="{% url 'profile_detail' %}" class="text-decoration-none text-muted small">
+          Volver al perfil
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    background-color: #fff;
+  }
+
+  .form-label {
+    color: #0d1b2a;
+    font-size: 0.9rem;
+  }
+
+  input.form-control, select.form-control {
+    border-radius: 0.5rem !important;
+    padding: 0.45rem 0.7rem !important;
+    width: 100%;
+    border: 1px solid #cbd5e1;
+  }
+
+  input.form-control:focus, select.form-control:focus {
+    border-color: #4cc9f0;
+    box-shadow: 0 0 0 0.2rem rgba(76, 201, 240, 0.25);
+  }
+
+  .btn-primary {
+    background-color: #4cc9f0;
+    border: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-primary:hover {
+    background-color: #3a86ff;
+    transform: translateY(-1px);
+  }
+
+  .text-end a i {
+    font-size: 0.9rem;
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "appgym/index.html" %}
+
+{% block titulo %}Iniciar sesión | Gimnasio Coder{% endblock %}
+
+{% block contenido %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-body px-4 py-4">
+          <h4 class="text-center mb-3 fw-bold text-primary">Iniciar sesión</h4>
+
+          {% if form.errors %}
+            <div class="alert alert-danger small text-center rounded-3 py-2 mb-4">
+              <strong>Atención:</strong> Usuario o contraseña incorrectos.
+            </div>
+          {% endif %}
+
+          <form method="post" novalidate>
+            {% csrf_token %}
+
+            <!-- Campo de usuario -->
+            <div class="d-flex align-items-center mb-3">
+              <label for="id_username"
+                     class="form-label fw-semibold me-3 mb-0 text-nowrap flex-shrink-0"
+                     style="width: 32%; text-align: right;">
+                Usuario
+              </label>
+              <div class="flex-grow-1">
+                {{ form.username }}
+              </div>
+            </div>
+
+            <!-- Campo de contraseña -->
+            <div class="d-flex align-items-center mb-3">
+              <label for="id_password"
+                     class="form-label fw-semibold me-3 mb-0 text-nowrap flex-shrink-0"
+                     style="width: 32%; text-align: right;">
+                Contraseña
+              </label>
+              <div class="flex-grow-1">
+                <input type="password" name="password" id="id_password" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary fw-semibold py-2 rounded-3">
+                Ingresar
+              </button>
+            </div>
+          </form>
+
+          <div class="text-center mt-3">
+            <small class="text-muted">
+              ¿No tenés cuenta?
+              <a href="{% url 'register' %}" class="text-decoration-none text-primary fw-semibold">
+                Registrate
+              </a>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ======= ESTILO COMPACTO Y UNIFORME ======= */
+  .card {
+    background-color: #ffffff;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .form-label {
+    color: #0d1b2a;
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+  }
+
+  input.form-control {
+    border-radius: 0.5rem !important;
+    padding: 0.45rem 0.7rem !important;
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input.form-control:focus {
+    border-color: #4cc9f0;
+    box-shadow: 0 0 0 0.2rem rgba(76, 201, 240, 0.25);
+  }
+
+  /* 🔹 Para que Django aplique mismo estilo al campo username */
+  input#id_username {
+    border-radius: 0.5rem !important;
+    padding: 0.45rem 0.7rem !important;
+    border: 1px solid #cbd5e1;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input#id_username:focus {
+    border-color: #4cc9f0;
+    box-shadow: 0 0 0 0.2rem rgba(76, 201, 240, 0.25);
+  }
+
+  .btn-primary {
+    background-color: #4cc9f0;
+    border: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-primary:hover {
+    background-color: #3a86ff;
+    transform: translateY(-1px);
+  }
+
+  .d-flex.align-items-center {
+    gap: 0.5rem;
+  }
+
+  h4.text-primary {
+    font-size: 1.4rem;
+  }
+
+  /* 🔹 Responsivo */
+  @media (max-width: 576px) {
+    .d-flex.align-items-center {
+      flex-direction: column;
+      align-items: stretch !important;
+    }
+
+    .form-label {
+      width: 100% !important;
+      text-align: left !important;
+      margin-bottom: 0.3rem;
+    }
+
+    .card {
+      max-width: 100%;
+    }
+  }
+</style>
+{% endblock %}

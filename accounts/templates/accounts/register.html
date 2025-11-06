@@ -1,0 +1,99 @@
+{% extends "appgym/index.html" %}
+
+{% block titulo %}Registro de usuario | Gimnasio Coder{% endblock %}
+
+{% block contenido %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">  {# 🔹 Aumenté el ancho del contenedor #}
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-body px-5 py-4">
+          <h4 class="text-center mb-3 fw-bold text-primary">Crear cuenta</h4>
+
+          <form method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            
+            {% for field in form %}
+              <div class="d-flex align-items-center mb-3">
+                <label for="{{ field.id_for_label }}" 
+                       class="form-label fw-semibold me-3 mb-0 text-nowrap flex-shrink-0"
+                       style="width: 40%;">
+                  {{ field.label }}
+                </label>
+                <div class="flex-grow-1">
+                  {{ field }}
+                  {% if field.errors %}
+                    <div class="text-danger small mt-1">{{ field.errors|striptags }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+
+            <div class="d-grid mt-3">
+              <button type="submit" class="btn btn-primary fw-semibold py-2 rounded-3">
+                Registrarme
+              </button>
+            </div>
+          </form>
+
+          <div class="text-center mt-3">
+            <small class="text-muted">
+              ¿Ya tenés una cuenta?
+              <a href="{% url 'login' %}" class="text-decoration-none text-primary fw-semibold">
+                Iniciá sesión
+              </a>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    background-color: #fff;
+    max-width: 520px;  /* 🔹 Más ancho para evitar solapamiento */
+    margin: 0 auto;
+  }
+
+  .form-label {
+    color: #333;
+    font-size: 0.9rem;
+  }
+
+  input.form-control, select.form-control {
+    border-radius: 0.5rem !important;
+    padding: 0.45rem 0.7rem !important;
+    width: 100%;
+  }
+
+  .btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+  }
+
+  form {
+    width: 100%;
+  }
+
+  @media (max-width: 576px) {
+    /* En pantallas chicas los campos se apilan */
+    .d-flex.align-items-center {
+      flex-direction: column;
+      align-items: stretch !important;
+    }
+
+    .form-label {
+      width: 100% !important;
+      margin-bottom: 0.3rem;
+    }
+  }
+</style>
+{% endblock %}

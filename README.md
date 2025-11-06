@@ -36,13 +36,14 @@ para verificar instalacion y version ejecutar : django-admin --version
 
 -------------------- instalar base de datos sqllite viewer
 buscar en extensiones --> SQLLite Viewer --> instalar
+instalar DB Browser SQLite para adm la BD --> https://sqlitebrowser.org/
 
 -------------------- creacion de proyecto y apps
-django-admin startproject proyecto_coder .
-django-admin startapp coder
-ir a proyecto_coder, file settings, agregar "coder" en seccion "Installed Apps"
-crear en app coder, el file urls.py
-crear en app coder, la carpeta template, y dentro de esta carpeta coder
+django-admin startproject proyecto_gymcoder .
+django startapp appgym
+ir a proyecto_coder, file settings, agregar "proyecto_gymcoder" en seccion "Installed Apps"
+crear en app appgym, el file urls.py
+crear en app appgym, la carpeta template, y dentro de esta carpeta appgym
 crear en template/coder --> file index.html
 setear en urls.py de proyecto_coder --> urlpatterns
 
@@ -78,7 +79,9 @@ git push -u origin main
 git push origin main --force
 
 
-
+-------------------- manejo bloque accounts
+agregado de pillow
+pip install Pillow
 
 
 -------------------- estructura del sitio
